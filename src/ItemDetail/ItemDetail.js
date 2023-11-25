@@ -1,21 +1,20 @@
-import "./ItemDetail.css"
+import React, { useContext, useState } from "react";
 import ItemCount from "../componentes/ItemCount/ItemCount";
-import CartContext from "../componentes/cartContext/CartContext";
-import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../componentes/cartContext/CartContext"; // Importa el contexto
 
-
-const ItemDetail = ({ id, name, img, category, price, stock }) => {
+const ItemDetail = ({ id, image, precio, stock, name, category }) => {
   const [quantityAdded, setQuantityAdded] = useState(0);
-
-  const { addItem } = useContext(CartContext);
+  const { addItem } = useContext(CartContext); // Usa el hook useContext para obtener el contexto
 
   const handleOnAdd = (quantity) => {
-    setQuantityAdded(quantity);
-
-    const item = {id,name,price,};
-
-    addItem(item, quantity);
+    if (quantity <= stock) {
+      setQuantityAdded(quantity);
+      const item = { id, image, precio, stock, name };
+      addItem(item, quantity);
+    } else {
+      alert("La cantidad solicitada excede el stock disponible");
+    }
   };
 
   return (
@@ -24,22 +23,22 @@ const ItemDetail = ({ id, name, img, category, price, stock }) => {
         <h2 className="ItemHeader">{name}</h2>
       </header>
       <picture>
-        <img src={img} alt={name} className="ItemImg" />
+        <img src={image} alt={name} className="ItemImg" />
       </picture>
       <section>
         <p className="Info">Categoria: {category}</p>
-        <p className="Info">Precio: ${price}</p>
+        <p className="Info">Precio: ${precio}</p>
       </section>
       <footer className="ItemFooter">
         {quantityAdded > 0 ? (
           <Link to="/cart" className="Option">
-            Terminar Compra
+            Ver Carrito
           </Link>
         ) : (
           <ItemCount
             stock={stock}
             initial={1}
-            onAdd={(quantity) => console.log("ya se encuentra agregado", quantity)}
+            onAdd={handleOnAdd}
           />
         )}
       </footer>

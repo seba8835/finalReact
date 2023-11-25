@@ -5,24 +5,24 @@ import ItemListContainer from "../componentes/ItemListContainer/ItemListContaine
 import Cart from "../componentes/cart/Cart";
 import ItemDetailContainer from "../ItemDetailContairner/ItemDetailContainer";
 import CheckOut from "../componentes/checkout/Checkout";
-import CartContext from "../componentes/cartContext/CartContext";
+import CartProvider from "../componentes/cartContext/CartContext";
 
 function App(){
 
     return (
         <div className="App">
             <BrowserRouter>
-            <CartContext>
+            <CartProvider>
             <NavBar/>
             <Routes>
                 <Route path="/" element= {<ItemListContainer/>}/>
-                <Route path="/category/:categoryId" element= {<ItemListContainer/>}/>
                 <Route path="/item/:itemId" element= { <ItemDetailContainer/>}/>
                 <Route path="/cart" element={<Cart />} />
+                {/* <Route path="/category/:categoryId" element= {<ItemListContainer/>}/> */}
                 <Route path="/checkout" element={<CheckOut />} />
                 <Route path="*" element= {<h1>404 NOT FOUND</h1>}/>
             </Routes>
-            </CartContext>
+            </CartProvider>
             </BrowserRouter>
        </div>
     );

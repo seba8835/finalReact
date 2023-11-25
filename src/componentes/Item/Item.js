@@ -1,34 +1,32 @@
-import "./Item.css"
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Item.css";
 import "bulma/css/bulma.css";
 
-const Item = ({id, prod, img, price, stock}) =>{
-    return(
-        <article className="CardItem">
-            <header className="header">
-                <h2 className="IteamHeader">
-                    {prod}
-                </h2>
-            </header>
+const Item = ({ id, image, precio, stock, name }) => {
 
-            <picture>
-                <img src={img} alt= {prod} className="ItemImg"/>
-            </picture>
+  return (
+    <article className="CardItem">
+      <header className="header">
+        <h2 className="IteamHeader">{name}</h2>
+      </header>
 
-            <section>
-                <P className="info">
-                    Precio: ${price}
-                </P>
-                
-                <P className="info">
-                    stock disponible: {stock}
-                </P>
-            </section>
+      <picture>
+        <img src={image} className="ItemImg" />
+      </picture>
 
-            <footer className="ItemFooter">
-                <link to= {`/item/${id}`} className="Option">Ver detalle</link>
-            </footer>
-        </article>
-    )
-}
+      <section>
+        <p>Precio: ${precio}</p>
+        <p>Stock disponible: {stock}</p>
+      </section>
+
+      <footer className="ItemFooter">
+        <Link to={`/item/${id}`} className="Option">
+          Ver detalle
+        </Link>
+      </footer>
+    </article>
+  );
+};
 
 export default Item;
