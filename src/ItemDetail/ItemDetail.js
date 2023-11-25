@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import ItemCount from "../componentes/ItemCount/ItemCount";
 import { Link } from "react-router-dom";
 import { CartContext } from "../componentes/cartContext/CartContext"; // Importa el contexto
+import "./ItemDetail.css";
 
 const ItemDetail = ({ id, image, precio, stock, name, category }) => {
   const [quantityAdded, setQuantityAdded] = useState(0);
@@ -20,7 +21,7 @@ const ItemDetail = ({ id, image, precio, stock, name, category }) => {
   return (
     <article className="CardItem">
       <header className="Header">
-        <h2 className="ItemHeader">{name}</h2>
+        <h4 className="ItemHeader">{name}</h4>
       </header>
       <picture>
         <img src={image} alt={name} className="ItemImg" />

@@ -5,6 +5,8 @@ import { NavLink, Link } from "react-router-dom";
 const NavBar =() =>{
     return(
         <div>
+            <h1>Fiambreria</h1>
+            <h2>toro y gringo</h2>
         <nav className="NavBar">
             <Link to="/">
                 <h3>Pagina Principal</h3>

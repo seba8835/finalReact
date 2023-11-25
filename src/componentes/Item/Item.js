@@ -8,11 +8,11 @@ const Item = ({ id, image, precio, stock, name }) => {
   return (
     <article className="CardItem">
       <header className="header">
-        <h2 className="IteamHeader">{name}</h2>
+        <h4 className="IteamHeader">{name}</h4>
       </header>
 
       <picture>
-        <img src={image} className="ItemImg" />
+        <img src={image} />
       </picture>
 
       <section>

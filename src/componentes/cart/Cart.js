@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from "../cartContext/CartContext";
 import { Link } from "react-router-dom";
 import CartItem from "../cartItem/CartItem";
+import "bulma/css/bulma.css";
 
 const Cart = () => {
   const { cart, clearCart, getTotalQuantity, total } = useContext(CartContext);
